@@ -1,1 +1,1 @@
-# nodejs-angular2-blog
+# NodeJs vs Mysql vs Angular 4
