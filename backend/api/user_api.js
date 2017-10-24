@@ -26,9 +26,25 @@ app.post('/adduser', function(req, res, next) {
 				};
 				user.addUser(data, function(err, info) {
 					// if(err) throw err;
-					console.log(info);
+					// console.log(info);
 					user.sendResponse(true, res);
 				});
+			});
+		};
+	});
+});
+
+app.post('/deleteuser', function(req, res, next) {
+	
+	var data = req.body;
+	user.findByUsername(data.username, function(err, rows, fields) {
+		if(rows.length !== 1) {
+			user.sendResponse(false, res);
+		} else {
+			user.deleteUser(data.username, function(err, info) {
+				// if(err) throw err;
+				// console.log(info);
+				user.sendResponse(true, res);
 			});
 		};
 	});

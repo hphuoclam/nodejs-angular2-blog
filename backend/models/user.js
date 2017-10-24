@@ -1,31 +1,17 @@
 var bcrypt = require('bcrypt');
 var mysql = require('mysql');
-
-
-var connection = mysql.createConnection({
-  	host     : 'localhost',
-  	user     : 'root',
-  	password : 'root',
-  	database : 'node_test'
-});
-
-
-connection.connect(function() {
-	console.log("Database connected");
-});
+var connection = require('./connection');
 
 module.exports.findAll = function(callback) {
-	connection.query('SELECT * from users', function(err, rows, fields) {
-	  	if (!err)
-	    	console.log('The solution is: ', rows);
-	  	else
-	    	console.log('Error while performing Query.');
-	});
 	connection.query("SELECT * FROM users ORDER BY id DESC", callback);
 }
 
 module.exports.addUser = function(data, callback) {
 	connection.query("INSERT INTO users SET ?", data, callback);
+}
+
+module.exports.deleteUser = function(username, callback) {
+	connection.query("DELETE FROM users WHERE users.username = '" + username + "'", callback);
 }
 
 module.exports.findByUsername = function(username, callback) {

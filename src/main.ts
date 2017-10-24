@@ -3,6 +3,7 @@ import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
 import * as $ from 'jquery';
+declare var $ :any; 
 
 if (environment.production) {
   enableProdMode();
