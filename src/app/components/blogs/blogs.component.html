@@ -1,0 +1,31 @@
+<h1 class="m-b-50">
+  {{title}}
+  	<div class="btn-group pull-right">
+  		<a class="btn btn-success" [routerLink]="['/blogs/add-new']"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add new</a>
+	</div>
+</h1>
+
+<div>
+	<div class="alert alert-dismissible alert-warning" *ngIf="results.length == 0">
+	  	<h4>Warning!</h4>
+	  	<p>No {{title}}</p>
+	</div>
+	<div class="media list-blog" *ngFor="let obj of results">
+  		<div class="media-left media-middle">
+		    <a [routerLink]="['/blogs/' + obj.id]">
+		    	<img class="media-object thumb100" src="../../../assets/image/blog-default.jpg" alt="{{obj.name}}">
+		    </a>
+	  	</div>
+	  	<div class="media-body">
+	    	<h4 class="media-heading">
+	    		<a [routerLink]="['/blogs/', obj.id]">{{obj.name}}</a>
+	    	</h4>
+	    	<div class="color-999 m-b-5">
+	    		by <strong>{{obj.first_name}} {{obj.last_name}}</strong> 
+	    		<span class="m-l-15 m-r-15">|</span>
+	    		published {{obj.created | amTimeAgo:true}}
+	    	</div>
+	    	<div class="limitText2" [innerHTML]="obj.short"></div>
+	  	</div>
+	</div>
+</div>

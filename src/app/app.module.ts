@@ -8,6 +8,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SweetAlertService } from 'ngx-sweetalert2';
 import {CKEditorModule} from 'ng2-ckeditor';
 import { routing } from './app.routes';
+import { MomentModule } from 'angular2-moment';
 
 import { UserService } from './services/user.service';
 import { BlogsService } from './services/blogs.service';
@@ -44,7 +45,8 @@ import 'rxjs/Observable';
         routing,
         NgbModule.forRoot(),
         ReactiveFormsModule,
-        CKEditorModule
+        CKEditorModule,
+        MomentModule
     ],
     providers: [
         UserService, 

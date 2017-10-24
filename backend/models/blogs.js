@@ -3,7 +3,7 @@ var connection = require('./connection');
 
 module.exports.findAll = function(callback) {
 	var sql = `
-		SELECT blogs.id, blogs.name, blogs.short, blogs.created, users.username
+		SELECT blogs.id, blogs.name, blogs.short, blogs.created, users.username, users.first_name, users.last_name
 		FROM blogs
 		INNER JOIN users ON users.id = blogs.user_id
 		ORDER BY id DESC 
@@ -27,7 +27,7 @@ module.exports.findByName = function(name, callback) {
 
 module.exports.findById = function(id, callback) {
 	var sql = `
-		SELECT blogs.*, users.username
+		SELECT blogs.*, users.username, users.first_name, users.last_name, users.info
 		FROM blogs
 		INNER JOIN users ON users.id = blogs.user_id
 		WHERE blogs.id =${id}

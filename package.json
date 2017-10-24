@@ -1,7 +1,7 @@
 {
-  "name": "NodeJs-Angular2",
+  "name": "NodeJs-Angular2-MySql",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "",
   "author": "Hp Lam",
   "angular-cli": {},
   "scripts": {
@@ -25,9 +25,13 @@
     "@angular/platform-server": "^4.4.6",
     "@angular/router": "^4.4.6",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
+    "angular2-moment": "^1.7.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "jquery": "^3.2.1",
+    "moment": "^2.19.1",
+    "ng2-ckeditor": "^1.1.9",
+    "ngx-sweetalert2": "^0.2.4",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
     "typescript": "^2.5.3",
