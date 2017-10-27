@@ -19,9 +19,11 @@
 						<strong [innerHTML]="results.short"></strong>
 					</div>
 					<div class="text-justify m-t-20 border-left p-l-15 p-t-15 p-b-15" [innerHTML]="results.description"></div>
-					<div class="p-l-15 p-t-15 p-b-15 color-999">
+					<div class="p-l-15 p-t-15 p-b-15 color-999 text-right">
 						{{results.like}}
-						<i class="fa fa-heart text-success" aria-hidden="true"></i>
+						<a href="" (click)="likeClick($event)">
+							<i class="fa fa-heart-o text-success m-l-5" aria-hidden="true"></i>
+						</a>
 					</div>
 				</div>
 			</div>

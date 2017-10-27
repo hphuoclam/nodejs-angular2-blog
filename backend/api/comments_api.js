@@ -24,4 +24,20 @@ app.post('/api/comment/add', function(req, res, next) {
 	});
 });
 
+app.post('/api/comment/delete', function(req, res, next) {
+	
+	var data = req.body;
+	comments.findId(data.id, function(err, rows, fields) {
+		if(rows.length !== 1) {
+			comments.sendResponse(false, res);
+		} else {
+			comments.delete(data.id, function(err, info) {
+				// if(err) throw err;
+				// console.log(info);
+				comments.sendResponse(true, res);
+			});
+		};
+	});
+});
+
 module.exports = app;

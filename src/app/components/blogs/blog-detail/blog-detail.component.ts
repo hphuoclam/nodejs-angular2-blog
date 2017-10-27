@@ -60,6 +60,11 @@ export class BlogDetailComponent implements OnInit {
             .subscribe(results => this.users = results);
     }
 
+    likeClick(e){
+        e.preventDefault();
+        console.log('ok');
+    }
+
     addComment(){
         this.blogsService.add_comments(this.data)
             .subscribe(res => {

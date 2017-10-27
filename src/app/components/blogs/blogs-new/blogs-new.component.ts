@@ -54,18 +54,18 @@ export class BlogsNewComponent implements OnInit {
 	addBlogs() {
 		console.log(this.data)
 		console.log(this.image_title)
-	  	var result = this.blogsService.add(this.data, this.image_title)
+	  	var result = this.blogsService.add(this.data)
 		    .subscribe(res => {
-		    	console.log(res);
-		   //  	if(res.success == "true") {
-		   //  		this._swal2.success({ title: 'Create success!' });
-		   //  		this.data = {
-					// 	name: '',
-					// 	description: '',
-					// 	short: '',
-					// 	user_id: '',
-					// };
-		   //  	}
+		    	// console.log(res);
+		    	if(res.success == "true") {
+		    		this._swal2.success({ title: 'Create success!' });
+		    		this.data = {
+						name: '',
+						description: '',
+						short: '',
+						user_id: '',
+					};
+		    	}
 		    });
 	}
 

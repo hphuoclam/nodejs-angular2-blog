@@ -27,7 +27,7 @@ app.get('/api/blogs/:id', function(req, res) {
 //     console.log(req.files);
 // });
 
-app.post('/add', function(req, res, next) {
+app.post('/api/blogs/add', function(req, res, next) {
 	
 	var data = req.body;
 	blogs.findByName(data.name, function(err, rows, fields) {

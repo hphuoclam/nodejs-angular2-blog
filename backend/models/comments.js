@@ -16,6 +16,7 @@ module.exports.add = function(data, callback) {
 	var sql = `INSERT INTO comments SET ?`;
 	connection.query(sql, data, callback);
 }
+
 module.exports.findById = function(id, callback) {
 	var sql = `
 		SELECT users.username, users.first_name, users.last_name, users.info, comments.*
@@ -26,6 +27,14 @@ module.exports.findById = function(id, callback) {
 		ORDER BY comments.id DESC
 	`
 	connection.query(sql, callback);
+}
+
+module.exports.findId = function(id, callback) {
+	connection.query("SELECT * FROM comments WHERE id = '" + id + "'", callback);
+}
+
+module.exports.delete = function(id, callback) {
+	connection.query("DELETE FROM comments WHERE id = '" + id + "'", callback);
 }
 
 module.exports.sendResponse = function(success, res) {
