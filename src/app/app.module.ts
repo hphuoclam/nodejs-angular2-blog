@@ -25,6 +25,7 @@ import { BlogDetailComponent } from './components/blogs/blog-detail/blog-detail.
 
 import 'rxjs/add/operator/map';
 import 'rxjs/Observable';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import 'rxjs/Observable';
         UsersComponent,
         NotFoundComponent,
         LoginComponent,
-        BlogDetailComponent
+        BlogDetailComponent,
+        CommentsComponent
     ],
     imports: [
         BrowserModule,

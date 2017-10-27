@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 
+
 // Import User Module Containing Functions Related To User Data
 var blogs = require('../models/blogs');
 
@@ -19,6 +20,12 @@ app.get('/api/blogs/:id', function(req, res) {
 		res.json(rows);
 	})
 });
+
+// app.post('/api/blogs/add', function (req, res) {
+//   	// console.log(data)
+//   	console.log(req.body);
+//     console.log(req.files);
+// });
 
 app.post('/add', function(req, res, next) {
 	

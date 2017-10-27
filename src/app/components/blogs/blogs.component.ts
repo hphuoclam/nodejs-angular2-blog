@@ -23,10 +23,10 @@ export class BlogsComponent implements OnInit {
 	};
 
 	constructor(@Inject(BlogsService) blogsService, @Inject(UserService) userService) {
-	  this.blogsService = blogsService;
-	  this.userService = userService;
-	  this.getData();
-	  this.getUsers();
+	  	this.blogsService = blogsService;
+	  	this.userService = userService;
+	  	this.getData();
+	  	this.getUsers();
 	}
 
 	ngOnInit() {

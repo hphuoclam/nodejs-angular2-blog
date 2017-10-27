@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
 
 app.use(require('./api/user_api'));
 app.use(require('./api/blog_api'));
+app.use(require('./api/comments_api'));
 
 port = process.env.PORT || 3000;
 

@@ -20,8 +20,9 @@ export class BlogsNewComponent implements OnInit {
 		name: '',
 		description: '',
 		short: '',
-		user_id: '',
+		user_id: ''
 	};
+	image_title: FileList;
 
 	constructor(
 		@Inject(BlogsService) blogsService, 
@@ -43,18 +44,28 @@ export class BlogsNewComponent implements OnInit {
 	  	.subscribe(results => this.users = results);
 	}
 
+	fileChange(event) {
+	    let file = event.target.files;
+	    if(file.length > 0){
+	    	this.image_title = event.target.files[0];
+	    }
+	}
+
 	addBlogs() {
-	  	var result = this.blogsService.add(this.data)
+		console.log(this.data)
+		console.log(this.image_title)
+	  	var result = this.blogsService.add(this.data, this.image_title)
 		    .subscribe(res => {
-		    	if(res.success == "true") {
-		    		this._swal2.success({ title: 'Create success!' });
-		    		this.data = {
-						name: '',
-						description: '',
-						short: '',
-						user_id: '',
-					};
-		    	}
+		    	console.log(res);
+		   //  	if(res.success == "true") {
+		   //  		this._swal2.success({ title: 'Create success!' });
+		   //  		this.data = {
+					// 	name: '',
+					// 	description: '',
+					// 	short: '',
+					// 	user_id: '',
+					// };
+		   //  	}
 		    });
 	}
 
