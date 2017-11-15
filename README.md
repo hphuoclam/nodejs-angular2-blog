@@ -3,9 +3,9 @@
 - Clone
 - Import database
 - Run angular 4:
-+ npm install
-+ npm start
+  + npm install
+  + npm start
 - Run nodejs:
-+ cd backend
-+ npm install
-+ npm start
+  + cd backend
+  + npm install
+  + npm start
