@@ -12,6 +12,9 @@ import { MomentModule } from 'angular2-moment';
 
 import { UserService } from './services/user.service';
 import { BlogsService } from './services/blogs.service';
+import { AuthenticationService } from './services/authentication.service';
+
+import { AuthGuard } from './guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -26,6 +29,7 @@ import { BlogDetailComponent } from './components/blogs/blog-detail/blog-detail.
 import 'rxjs/add/operator/map';
 import 'rxjs/Observable';
 import { CommentsComponent } from './components/comments/comments.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 
 @NgModule({
@@ -38,7 +42,8 @@ import { CommentsComponent } from './components/comments/comments.component';
         NotFoundComponent,
         LoginComponent,
         BlogDetailComponent,
-        CommentsComponent
+        CommentsComponent,
+        SignupComponent
     ],
     imports: [
         BrowserModule,
@@ -51,9 +56,11 @@ import { CommentsComponent } from './components/comments/comments.component';
         MomentModule
     ],
     providers: [
+        AuthGuard,
         UserService, 
         BlogsService,
-        SweetAlertService
+        SweetAlertService,
+        AuthenticationService
     ],
     bootstrap: [
         AppComponent

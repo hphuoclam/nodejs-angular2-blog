@@ -9,7 +9,7 @@
 			<h4 class="media-heading"><strong>{{data.first_name}} {{data.last_name}}</strong></h4>
 			{{data.comment}}
 			<div class="color-999 m-t-5">
-				<span class="m-r-15">{{data.created | amTimeAgo:true}}</span>
+				<em class="m-r-15">{{data.created | amTimeAgo:true}}</em>
 				<a class="m-r-15" href="" (click)="replyClick($event)">Reply</a>
 				<a class="m-r-15" href="" (click)="deleteClick($event)">Delete</a>
 			</div>

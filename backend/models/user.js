@@ -26,8 +26,8 @@ module.exports.encrypt = function(data, callback) {
 
 module.exports.sendResponse = function(success, res) {
 	if(success) {
-		res.send({'success': 'true'});
+		res.send({'success': true});
 	} else {
-		res.send({'success': 'false'});
+		res.send({'success': false});
 	}
 }

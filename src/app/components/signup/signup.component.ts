@@ -5,17 +5,22 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class LoginComponent implements OnInit {
-	title = 'Login';
+export class SignupComponent implements OnInit {
+
+	title = 'Signup';
 	results = [];
 	userService: any;
 	users = [];
 	data: any = {
 		username: '',
+		email: '',
+		first_name: '',
+		last_name: '',
+		info: '',
 		password: '',
 	};
 	error = '';
@@ -36,14 +41,16 @@ export class LoginComponent implements OnInit {
 	  this.results = [];
 	}
 
-	login() {
-		this.authenticationService.login(this.data.username, this.data.password)
-        .subscribe(result => {
-            if (result === true) {
-                this.router.navigate(['/']);
-            } else {
-                this.error = 'Username or password is incorrect';
-            }
-        });
+	signup() {
+		this.userService.addUser(this.data)
+	    .subscribe(res => {
+	    	if(res.success) {
+	    		this.router.navigate(['/login']);
+	    		// this._swal2.success({ title: 'Create success!' });
+	    	}else{
+	    		this._swal2.error({ title: 'Error!' });
+	    	}
+	    });
 	}
+
 }

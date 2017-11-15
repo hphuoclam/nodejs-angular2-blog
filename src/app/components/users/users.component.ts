@@ -29,12 +29,13 @@ export class UsersComponent implements OnInit {
 	  	this.myForm = this.formBuilder.group({
             username: ['', Validators.minLength(5)],
             password: ['', Validators.minLength(5)],
+            email: ['', Validators.minLength(5)],
         });
 	  	this.getUsers();
 	}
 
 	getUsers() {
-	  	this.userService.getUsers()
+	  	this.userService.getListUsers()
 		  	.map(res => res.json())
 		  	.subscribe(results => this.results = results);
 	}
@@ -43,8 +44,8 @@ export class UsersComponent implements OnInit {
 		let data = this.myForm.value;
 	  	var result = this.userService.addUser(data)
 	    .subscribe(res => {
-	    	if(res.success == "true") {
-	    		this.results.unshift(data);
+	    	if(res.success) {
+	    		this.getUsers();
 	    		this.myForm.reset();
 	    		this._swal2.success({ title: 'Create success!' });
 	    	}else{

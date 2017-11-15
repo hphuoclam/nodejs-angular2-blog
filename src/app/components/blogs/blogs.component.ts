@@ -41,7 +41,7 @@ export class BlogsComponent implements OnInit {
 	}
 
 	getUsers() {
-	  	this.userService.getUsers()
+	  	this.userService.getListUsers()
 	  	.map(res => res.json())
 	  	.subscribe(results => this.users = results);
 	}

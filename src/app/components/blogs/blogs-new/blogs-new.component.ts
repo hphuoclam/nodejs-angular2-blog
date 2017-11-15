@@ -15,7 +15,7 @@ export class BlogsNewComponent implements OnInit {
 	results = [];
 	blogsService: any;
 	userService: any;
-	users = [];
+	users = {};
 	data: any = {
 		name: '',
 		description: '',
@@ -31,17 +31,14 @@ export class BlogsNewComponent implements OnInit {
 	) {
 	  	this.blogsService = blogsService;
 	  	this.userService = userService;
-	  	this.getUsers();
+	  	this.userService.getUsers().subscribe((value) => {
+			this.users = value;
+			this.data.user_id = value.id;
+		});
 	}
 
 	ngOnInit() {
 	  this.results = [];
-	}
-
-	getUsers() {
-	  	this.userService.getUsers()
-	  	.map(res => res.json())
-	  	.subscribe(results => this.users = results);
 	}
 
 	fileChange(event) {
@@ -57,13 +54,12 @@ export class BlogsNewComponent implements OnInit {
 	  	var result = this.blogsService.add(this.data)
 		    .subscribe(res => {
 		    	// console.log(res);
-		    	if(res.success == "true") {
+		    	if(res.success) {
 		    		this._swal2.success({ title: 'Create success!' });
 		    		this.data = {
 						name: '',
 						description: '',
 						short: '',
-						user_id: '',
 					};
 		    	}
 		    });

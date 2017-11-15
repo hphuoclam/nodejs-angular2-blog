@@ -5,7 +5,9 @@ import { BlogsNewComponent } from './components/blogs/blogs-new/blogs-new.compon
 import { UsersComponent } from './components/users/users.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { BlogDetailComponent } from './components/blogs/blog-detail/blog-detail.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
 	{
@@ -17,13 +19,14 @@ const routes: Routes = [
 		path: 'blogs',
 		children: [
 	      	{path: '', component: BlogsComponent}, 
-	      	{path: 'add-new', component: BlogsNewComponent},
+	      	{path: 'add-new', component: BlogsNewComponent, canActivate: [AuthGuard]},
 	      	{path: ':id', component: BlogDetailComponent},
 	    ]
 	},
 	{
 		path: 'users',
 		component: UsersComponent,
+		canActivate: [AuthGuard]
 	},
 	{
 		path: 'error',
@@ -32,6 +35,10 @@ const routes: Routes = [
 	{
 		path: 'login',
 		component: LoginComponent,
+	},
+	{
+		path: 'signup',
+		component: SignupComponent,
 	},
 	{ 
 		path: '**',

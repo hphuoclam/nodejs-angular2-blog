@@ -17,14 +17,7 @@
 		</div>
 		<div class="form-group">
 		  	<label class="control-label" for="description">Description</label>
-		  	<ckeditor [(ngModel)]="data.description" name="description" debounce="500" [config]="{height: '500px'}"></ckeditor>
-		</div>
-		<div class="form-group">
-		  	<label class="control-label" for="user_id">User</label>
-		  	<select class="form-control" id="user_id" name="user_id" [(ngModel)]="data.user_id">
-				<option value="">--- Choose user ---</option>
-				<option *ngFor="let item of users" value="{{item.id}}" class="text-capitalize">{{item.username}}</option>
-			</select>
+		  	<ckeditor [(ngModel)]="data.description" name="description" debounce="500" [config]="{height: '400px'}"></ckeditor>
 		</div>
 		<div class="text-center">
 			<a class="btn btn-default" [routerLink]="['/blogs']"><i class="fa fa-undo" aria-hidden="true"></i> Back</a>

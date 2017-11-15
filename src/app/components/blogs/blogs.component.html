@@ -6,10 +6,7 @@
 </h1>
 
 <div>
-	<div class="alert alert-dismissible alert-warning" *ngIf="results.length == 0">
-	  	<h4>Warning!</h4>
-	  	<p>No {{title}}</p>
-	</div>
+	<!-- <div *ngIf="results.length == 0">No {{title}}</div> -->
 	<div class="media list-blog" *ngFor="let obj of results">
   		<div class="media-left media-middle">
 		    <a [routerLink]="['/blogs/' + obj.id]">
@@ -18,12 +15,12 @@
 	  	</div>
 	  	<div class="media-body">
 	    	<h4 class="media-heading">
-	    		<a [routerLink]="['/blogs/', obj.id]">{{obj.name}}</a>
+	    		<a [routerLink]="['/blogs/', obj.id]" class="blog-title">{{obj.name}}</a>
 	    	</h4>
 	    	<div class="color-999 m-b-5">
 	    		by <strong>{{obj.first_name}} {{obj.last_name}}</strong> 
 	    		<span class="m-l-15 m-r-15">|</span>
-	    		published {{obj.created | amTimeAgo:true}}
+	    		<em>published {{obj.created | amTimeAgo:true}}</em>
 	    	</div>
 	    	<div class="limitText2" [innerHTML]="obj.short"></div>
 	  	</div>

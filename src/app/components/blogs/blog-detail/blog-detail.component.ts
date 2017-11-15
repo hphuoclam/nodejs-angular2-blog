@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { BlogsService } from '../../../services/blogs.service';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { SweetAlertService } from 'ngx-sweetalert2';
 
 @Component({
   	selector: 'app-blog-detail',
@@ -15,7 +16,7 @@ export class BlogDetailComponent implements OnInit {
     userService: any;
     results = {};
     comments = [];
-    users = [];
+    users = {};
     data = {
     	comment: '',
         blog_id: 0,
@@ -24,11 +25,16 @@ export class BlogDetailComponent implements OnInit {
 
   	constructor(
         private route: ActivatedRoute,
+        private _swal2: SweetAlertService,
         @Inject(BlogsService) blogsService,
-        @Inject(UserService) userService
+        @Inject(UserService) userService,
     ) {
         this.blogsService = blogsService;
         this.userService = userService;
+        this.userService.getUsers().subscribe((value) => {
+            this.users = value;
+            this.data.user_id = value.id;
+        });
     }
 
   	ngOnInit() {
@@ -37,7 +43,6 @@ export class BlogDetailComponent implements OnInit {
             this.data.blog_id = this.id;
 	    });
 	    this.getData();
-        this.getUsers();
   	}
 
     getData() {
@@ -54,21 +59,15 @@ export class BlogDetailComponent implements OnInit {
           	});
     }
 
-    getUsers() {
-        this.userService.getUsers()
-            .map(res => res.json())
-            .subscribe(results => this.users = results);
-    }
-
     likeClick(e){
         e.preventDefault();
-        console.log('ok');
+        this._swal2.success({ title: 'Like Click!' });
     }
 
     addComment(){
         this.blogsService.add_comments(this.data)
             .subscribe(res => {
-                if(res.success == "true") {
+                if(res.success) {
                     this.getData();
                 }
                 this.data.comment = '';

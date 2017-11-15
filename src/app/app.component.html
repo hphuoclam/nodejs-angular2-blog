@@ -13,13 +13,19 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
                 <li routerLinkActive="active">
-                    <a routerLink="/blogs"><i class="fa fa-newspaper-o m-r-5" aria-hidden="true"></i> Blogs</a>
+                    <a routerLink="/blogs">Blogs</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a routerLink="/users"><i class="fa fa-users m-r-5" aria-hidden="true"></i> Users</a>
+                    <a routerLink="/users">Users</a>
                 </li>
-                <li routerLinkActive="active">
-                    <a routerLink="/login"><i class="fa fa-user m-r-5" aria-hidden="true"></i> Login</a>
+                <li routerLinkActive="active" *ngIf="!isLogin">
+                    <a routerLink="/login">Login</a>
+                </li>
+                <li routerLinkActive="active" *ngIf="!isLogin">
+                    <a routerLink="/signup">Signup</a>
+                </li>
+                <li *ngIf="isLogin">
+                    <a href="#" (click)="logout($event)">Logout</a>
                 </li>
             </ul>
         </div>
