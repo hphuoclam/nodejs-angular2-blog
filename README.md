@@ -1,6 +1,6 @@
 # Example blog
 
-- Clone
+- Clone repository
 - Import database
 - Run angular 4:
   + npm install
