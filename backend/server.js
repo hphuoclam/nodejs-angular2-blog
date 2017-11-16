@@ -17,8 +17,14 @@ app.use('/', express.static(__dirname));
 // Add headers
 app.use(function (req, res, next) {
 
+    var allowedOrigins = ['http://127.0.0.1:4200', 'http://localhost:4200'];
+    var origin = req.headers.origin;
+    if(allowedOrigins.indexOf(origin) > -1){
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    // res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

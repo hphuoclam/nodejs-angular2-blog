@@ -1,6 +1,7 @@
 export class AppSettings {
 	public static TITLE_HOST = ' Django - Angular2';
 	public static COOKIE_USERS = 'COOKIE_USERS';
+	public static HOST_SERVER = 'http://localhost:3000/';
 	public static URL_IMAGE_PROFILE = '/static/upload/profile/';
 	public static URL_IMAGE_BLOG = '/static/upload/blog/';
 	public static URL_IMAGE_BLOG_DEFAULT = 'static/upload/default-blog.jpg';

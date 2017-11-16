@@ -3,6 +3,7 @@ import { BlogsService } from '../../../services/blogs.service';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { SweetAlertService } from 'ngx-sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   	selector: 'app-blog-detail',
@@ -14,6 +15,7 @@ export class BlogDetailComponent implements OnInit {
   	private sub: any;
     blogsService: any;
     userService: any;
+    disable_like: boolean = false;
     results = {};
     comments = [];
     users = {};
@@ -26,6 +28,7 @@ export class BlogDetailComponent implements OnInit {
   	constructor(
         private route: ActivatedRoute,
         private _swal2: SweetAlertService,
+        private router: Router,
         @Inject(BlogsService) blogsService,
         @Inject(UserService) userService,
     ) {
@@ -42,36 +45,53 @@ export class BlogDetailComponent implements OnInit {
 	       	this.id = +params['id']; // (+) converts string 'id' to a number
             this.data.blog_id = this.id;
 	    });
-	    this.getData();
+        this.getDataDetail();
+	    this.getDataComment();
   	}
 
-    getData() {
+    getDataDetail() {
       	this.blogsService.detail(this.id)
             .map(res => res.json())
             .subscribe(results => {
                 this.results = results[0];
             });
+    }
 
+    getDataComment() {
         this.blogsService.get_comments(this.id)
-          	.map(res => res.json())
-          	.subscribe(results => {
-    	      	this.comments = results;
-          	});
+            .map(res => res.json())
+            .subscribe(results => {
+                this.comments = results;
+            });
     }
 
     likeClick(e){
         e.preventDefault();
-        this._swal2.success({ title: 'Like Click!' });
+        this.blogsService.like({id: this.id})
+            .subscribe(results => {
+                if(results.success){
+                    this._swal2.success({ title: 'Thank you!' });
+                    this.results['like'] += 1;
+                    this.disable_like = true;
+                }
+            });
     }
 
-    addComment(){
-        this.blogsService.add_comments(this.data)
-            .subscribe(res => {
-                if(res.success) {
-                    this.getData();
-                }
-                this.data.comment = '';
-            });
+    addComment(data){
+        console.log(data)
+        // if(!data.user_id){
+        //     this._swal2.warning({ title: 'Please login!' }).then(()=>{
+        //         this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url }});
+        //     });
+        //     return false;
+        // }
+        // this.blogsService.add_comments(data)
+        //     .subscribe(res => {
+        //         if(res.success) {
+        //             this.getDataComment();
+        //         }
+        //         this.data.comment = '';
+        //     });
     }
 
 }

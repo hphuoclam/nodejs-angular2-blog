@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { AppSettings } from '../app.setting';
 
 @Injectable()
 export class BlogsService {
@@ -11,22 +12,30 @@ export class BlogsService {
 	}
 
 	get() {
-		return this.http.get('http://localhost:3000/api/blogs');
+		return this.http.get(AppSettings.HOST_SERVER + 'api/blogs');
 	}
 
 	detail(id) {
-		return this.http.get('http://localhost:3000/api/blogs/' + id);
+		return this.http.get(AppSettings.HOST_SERVER + 'api/blogs/' + id);
 	}
 
 	get_comments(id) {
-		return this.http.get('http://localhost:3000/api/comment/' + id);
+		return this.http.get(AppSettings.HOST_SERVER + 'api/comment/' + id);
 	}
 
 	add_comments(data) {
         let headers = new Headers({"Content-Type": "application/json"});
 		let options = new RequestOptions({ headers: headers });
 
-		return this.http.post('http://localhost:3000/api/comment/add', JSON.stringify(data), options)
+		return this.http.post(AppSettings.HOST_SERVER + 'api/comment/add', JSON.stringify(data), options)
+			.map(res => res.json());
+	}
+
+	delete_comments(data) {
+        let headers = new Headers({"Content-Type": "application/json"});
+		let options = new RequestOptions({ headers: headers });
+
+		return this.http.post(AppSettings.HOST_SERVER + 'api/comment/delete', JSON.stringify(data), options)
 			.map(res => res.json());
 	}
 
@@ -34,7 +43,15 @@ export class BlogsService {
         let headers = new Headers({"Content-Type": "application/json"});
 		let options = new RequestOptions({ headers: headers });
 
-		return this.http.post('http://localhost:3000/api/blogs/add', JSON.stringify(data), options)
+		return this.http.post(AppSettings.HOST_SERVER + 'api/blogs/add', JSON.stringify(data), options)
+			.map(res => res.json());
+	}
+
+	like(data) {
+        let headers = new Headers({"Content-Type": "application/json"});
+		let options = new RequestOptions({ headers: headers });
+
+		return this.http.post(AppSettings.HOST_SERVER + 'api/blogs/like', JSON.stringify(data), options)
 			.map(res => res.json());
 	}
 
@@ -50,7 +67,7 @@ export class BlogsService {
  //        headers.append('Content-Type', 'multipart/form-data');
  //        headers.append('Accept', 'application/json');
  //        let options = new RequestOptions({ headers: headers });
- //        return this.http.post('http://localhost:3000/api/blogs/add', formData, options)
+ //        return this.http.post(AppSettings.HOST_SERVER + 'api/blogs/add', formData, options)
  //            .map(res => res.json())
 	// }
 

@@ -21,6 +21,10 @@ module.exports.add = function(data, callback) {
 	connection.query("INSERT INTO blogs SET ?", data, callback);
 }
 
+module.exports.update = function(data, id, callback) {
+	connection.query(`UPDATE blogs SET ? WHERE id=?`, [data, id], callback)
+}
+
 module.exports.findByName = function(name, callback) {
 	connection.query("SELECT * FROM blogs WHERE name = '" + name + "'", callback);
 }

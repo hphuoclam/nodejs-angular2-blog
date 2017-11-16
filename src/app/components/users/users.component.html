@@ -40,9 +40,9 @@
 		</div>
 		<ul class="list-group">
 		  	<li class="list-group-item" *ngFor="let user of results">
-		  		<span class="badge custom-badge">
+		  		<!-- <span class="badge custom-badge">
 		  			<button class="btn btn-custom-delete btn-danger" (click)="deleteUser($event, user.username)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-		  		</span>
+		  		</span> -->
 		    	<strong>{{user.first_name}} {{user.last_name}}</strong>
 		    	____ <em>({{user.email}})</em>
 		  	</li>

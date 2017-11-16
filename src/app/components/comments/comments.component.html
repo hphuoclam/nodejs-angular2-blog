@@ -2,7 +2,7 @@
 	<div class="media">
 		<div class="media-left">
 			<a href="#">
-				<img class="media-object thumb64" src="../../../assets/image/man.png" style="margin: auto;">
+				<img class="media-object thumb50 m-t-5" src="../../../assets/image/man.png">
 			</a>
 		</div>
 		<div class="media-body">
@@ -11,7 +11,19 @@
 			<div class="color-999 m-t-5">
 				<em class="m-r-15">{{data.created | amTimeAgo:true}}</em>
 				<a class="m-r-15" href="" (click)="replyClick($event)">Reply</a>
-				<a class="m-r-15" href="" (click)="deleteClick($event)">Delete</a>
+				<a class="m-r-15" href="" (click)="deleteClick($event)" *ngIf="users && users.id === data.user_id">Delete</a>
+			</div>
+			<div class="row" *ngIf="showComment">
+				<form (submit)="addReplyComment()" class="col-xs-12 col-sm-8 col-sm-offset-2 p-0 m-t-15">
+					<div class="form-group">
+					  	<textarea rows="3" class="form-control" id="comment" type="text" name="comment" [(ngModel)]="commentData.comment" placeholder="Write Comment ..." ></textarea>
+					</div>
+					<div class="text-right">
+						<button class="btn btn-success" type="submit" [disabled]="!commentData.comment">
+							<i class="fa fa-commenting" aria-hidden="true"></i> Comment
+						</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

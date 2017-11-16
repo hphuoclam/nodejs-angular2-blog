@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
 		this.authenticationService.login(this.data.username, this.data.password)
         .subscribe(result => {
             if (result === true) {
-                this.router.navigate(['/']);
+            	let returnUrl = this.router['currentUrlTree']['queryParams']['returnUrl'] ? this.router['currentUrlTree']['queryParams']['returnUrl'] : '/';
+                this.router.navigate([returnUrl]);
             } else {
                 this.error = 'Username or password is incorrect';
             }

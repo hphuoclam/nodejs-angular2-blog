@@ -4,3 +4,7 @@
 .font-weight-400{
 	font-weight: 400;
 }
+.btn-custom{
+	background: transparent;
+	border: 0;
+}
